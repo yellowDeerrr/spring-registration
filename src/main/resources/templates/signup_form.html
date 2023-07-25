@@ -16,7 +16,10 @@
     <div>
         <h1>User Registration - Sign Up</h1>
     </div>
-    <form th:action="'http://localhost:8080/process_register'" th:object="${user}"
+    <div th:if="${errorMessage} == 'User name is already using'">
+        <div class="alert alert-danger" role="alert" th:text="${errorMessage}" ></div>
+    </div>
+    <form th:action="'http://localhost:8080/register'" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <div class="m-3">
             <div class="form-group row">

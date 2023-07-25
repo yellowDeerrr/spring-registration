@@ -29,8 +29,12 @@ public class MainController {
         return "signup_form";
     }
 
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
+    @PostMapping("/register")
+    public String checkInfoUserWhileRegistration(Model model, User user) {
+        if (userRepo.findByUsername(user.getUsername()) != null){
+            model.addAttribute("errorMessage", "User name is already using");
+            return "signup_form";
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
