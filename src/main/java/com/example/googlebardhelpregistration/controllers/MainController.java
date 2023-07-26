@@ -22,6 +22,17 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "login";
+    }
+
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
